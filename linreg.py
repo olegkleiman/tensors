@@ -17,7 +17,6 @@ m = tf.Variable(0.)
 b = tf.Variable(0.)
 
 
-# @tf.function
 def predict_y_value(x):
     y = m * x + b
     return y
@@ -25,17 +24,20 @@ def predict_y_value(x):
 
 @tf.function
 def squared_error(y_pred, y_true):
+    print('inside loss function')
     return tf.reduce_mean(tf.square(y_pred - y_true))
 
 
 steps = 400
 learning_rate = 0.05
 
+# Bracket the loss function call - squared_error()- with
+# tf.summary.trace_on() and tf.summary.trace_export()
 tf.summary.trace_on(graph=True, profiler=False)
 
-for epoch in range(steps):
-    with tf.GradientTape() as tape:
-        with writer.as_default():
+with writer.as_default():
+    for epoch in range(steps):
+        with tf.GradientTape() as tape:
             predictions = predict_y_value(x_train)
             loss = squared_error(predictions, y_train)
             tf.summary.scalar('loss', loss, step=epoch)
@@ -44,6 +46,8 @@ for epoch in range(steps):
         m.assign_sub(gradients[0] * learning_rate)
         b.assign_sub(gradients[1] * learning_rate)
 
-tf.summary.trace_export(name='mse_loss',
-                        step=0,
-                        profiler_outdir=logdir)
+    tf.summary.trace_export(name='mse_loss',
+                            step=0,
+                            profiler_outdir=logdir)
+
+print("m: %f, b: %f" % (m.numpy(), b.numpy()))

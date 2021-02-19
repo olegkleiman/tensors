@@ -24,6 +24,8 @@ def my_func(ax, bx):
 A = tf.constant([[1, 2], [3, 4]], dtype=tf.float32, name='A')
 x = tf.constant([[5, 6], [7, 8]], dtype=tf.float32, name='x')
 
+# Bracket the function call with
+# tf.summary.trace_on() and tf.summary.trace_export()
 tf.summary.trace_on(graph=True, profiler=False)
 z = my_func(A, x)
 
