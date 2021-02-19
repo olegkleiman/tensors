@@ -24,7 +24,10 @@ def predict_y_value(x):
 
 @tf.function
 def squared_error(y_pred, y_true):
-    print('inside loss function')
+    # Being decorated with @tf.function, this function will only be parsed (on the first call) into graph.
+    # It's actually not executed.
+    # The created graph is executed instead.
+    # This graph is visualized in TensorBoard with help on tf.summary.* methods
     return tf.reduce_mean(tf.square(y_pred - y_true))
 
 
