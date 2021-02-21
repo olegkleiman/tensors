@@ -1,13 +1,17 @@
 import tensorflow as tf
+config = tf.compat.v1.ConfigProto(gpu_options=tf.compat.v1.GPUOptions(allow_growth=True))
 
 print("TensorFlow version: ", tf.__version__)
+print("Num GPU Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+print(tf.test.gpu_device_name())
+# tf.debugging.set_log_device_placement(True)
 
 logdir = './logs/linreg'
 writer = tf.summary.create_file_writer(logdir)
 
 slope = 0.4
 bias = 1.5
-rows = 100
+rows = 1000
 
 x_train = tf.random.uniform(shape=(rows,))
 perturb = tf.random.normal(shape=(len(x_train),), stddev=0.1)
@@ -36,7 +40,7 @@ learning_rate = 0.05
 
 # Bracket the loss function call - squared_error()- with
 # tf.summary.trace_on() and tf.summary.trace_export()
-tf.summary.trace_on(graph=True, profiler=False)
+tf.summary.trace_on(graph=True, profiler=True)
 
 with writer.as_default():
     for epoch in range(steps):
