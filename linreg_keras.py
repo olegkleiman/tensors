@@ -5,8 +5,8 @@ from time import time
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-import io
 import matplotlib.pyplot as plt
+from plot_helpers import plot_to_image
 
 print("Num GPU Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 print(tf.test.gpu_device_name())
@@ -16,17 +16,6 @@ bias = 1.5
 data_size = 1000
 # 80% of the data is for training.
 train_pct = 0.8
-
-
-def generate_plot(x, y):
-    plt.figure()
-    plt.scatter(x, y)
-    plt.title('y=0.4*x+1.5')
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-    return buf
-
 
 x_train = tf.random.uniform(shape=(data_size,))
 perturb = tf.random.normal(shape=(len(x_train),), stddev=0.1)
@@ -56,14 +45,13 @@ def lr_schedule(epoch, lr):
 
 logdir = "logs/keras/linreg/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 file_writer = tf.summary.create_file_writer(logdir + "/metrics")
-file_writer.set_as_default()
 
 # Add image to TensorBoard
-plot_buf = generate_plot(x_train, y_train)
-image = tf.image.decode_png(plot_buf.getvalue(), channels=4)
-# Add the batch dimension
-image = tf.expand_dims(image, 0)
-tf.summary.image("plot", image, step=0)
+with file_writer.as_default():
+    figure = plt.figure(figsize=(10, 10))
+    plt.scatter(x_train, y_train, color='blue',  label='y=0.4*x+1.5')
+    image = plot_to_image(figure)
+    tf.summary.image("plot", image, step=0)
 
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 # At the beginning of every epoch, this callback gets the updated learning rate value from lr_schedule
@@ -94,6 +82,8 @@ history = model.fit(x_train, y_train,
 print('Total learning time: {} sec.'.format(time()-start))
 
 print("Average test loss: ", np.average(history.history['loss']))
+
+# Printing weights makes sense only for such simple model with only one layer
 weights = model.get_weights()
 print(weights)
 
