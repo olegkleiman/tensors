@@ -9,7 +9,7 @@ current_weight = initial_weight
 current_bias = initial_bias
 
 sigmoid = lambda x, w, b: 1. / (1. + np.exp(-(x * w + b)))
-x_input = np.linspace(-1., 1, 100)
+x_input = np.linspace(-2., 2, 100)
 
 fig, ax = plt.subplots()
 plt.subplots_adjust(left=0.25, bottom=0.25)
