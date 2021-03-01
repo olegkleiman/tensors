@@ -16,7 +16,7 @@ y = 5 * tf.experimental.numpy.power(X, 2) + perturb
 
 # callbacks
 logdir = "logs/keras/hint/" + datetime.now().strftime("%Y%m%d-%H%M%S")
-tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir, profile_batch='500,520')
 # early_stopping_callback = keras.callbacks.EarlyStopping(monitor='loss', patience=3, verbose=True)
 
 # model
@@ -30,7 +30,7 @@ model = keras.Sequential([
 model.compile(loss=keras.losses.mean_squared_error,
               optimizer=keras.optimizers.SGD(lr=0.001))
 model.fit(X, y, epochs=1000,
-          callbacks=[tensorboard_callback]) # , early_stopping_callback])
+          callbacks=[tensorboard_callback])  # , early_stopping_callback])
 print(model.summary())
 # predictions
 predictions = model.predict(X)
