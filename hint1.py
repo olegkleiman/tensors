@@ -2,17 +2,19 @@ from datetime import datetime
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from tensorflow.python.client import device_lib
 import matplotlib.pyplot as plt
 from plot_helpers import plot_to_image
 
 print("Num GPU Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 print(tf.test.gpu_device_name())
+print(device_lib.list_local_devices())
 
-X = np.arange(0.0, 5.0, 0.01, dtype='float32')
+X = np.arange(0.0, 1.0, 0.001, dtype='float32')
 # DATA_SIZE = 100
 # X = tf.random.uniform(shape=(DATA_SIZE,), minval=0.0, maxval=5.0)
-perturb = tf.random.normal(shape=(len(X),), stddev=0.1)
-y = 5 * tf.experimental.numpy.power(X, 2) + perturb
+perturb = tf.random.normal(shape=(len(X),), stddev=0.01)
+y = 0.2 + 0.4 * X ** 2 + 0.3 * X * tf.math.sin(15 * X) + 0.05 * tf.math.cos(50 * X) + perturb
 
 # callbacks
 logdir = "logs/keras/hint/" + datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -21,14 +23,15 @@ tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir, profile_batch
 
 # model
 model = keras.Sequential([
-    keras.layers.Dense(50, activation=tf.nn.sigmoid, input_dim=1),
-    keras.layers.Dense(30, activation=tf.nn.sigmoid),
+    keras.layers.Dense(256, activation=tf.nn.sigmoid, input_dim=1),
+    keras.layers.Dense(128, activation=tf.nn.sigmoid),
+    keras.layers.Dense(64, activation=tf.nn.sigmoid),
     keras.layers.Dense(1)  # output layer that returns a single, continuous value
 ])
 
 # training
 model.compile(loss=keras.losses.mean_squared_error,
-              optimizer=keras.optimizers.SGD(lr=0.001))
+              optimizer=keras.optimizers.SGD(lr=0.00001))
 model.fit(X, y, epochs=1000,
           callbacks=[tensorboard_callback])  # , early_stopping_callback])
 print(model.summary())
