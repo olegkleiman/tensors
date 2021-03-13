@@ -18,7 +18,7 @@ ax.margins(x=0)
 axcolor = 'lightgoldenrodyellow'
 
 plt.axes(ax)  # select sin_ax
-plt.title('y = sigmoid(x, weight, bias)')
+plt.title(r'$y=\frac{1}{1 + e^{-(wx+b)}}$') # 'y = sigmoid(x, weight, bias)')
 sigmoid_plot, = plt.plot(x_input, sigmoid(x_input, initial_weight, initial_bias))
 
 slider_bias_ax = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
