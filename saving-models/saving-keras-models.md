@@ -79,11 +79,9 @@ _________________________________________________________________
 None
 ```
 
+Once the model is built it may be saved as [TF SavedModel format](https://www.tensorflow.org/guide/saved_model):
 
-
-Once the model is built it may be saved as TF SavedModel format:
-
-```text
+```python
 saved_model_dir = './my_model/1/'
 tf.saved_model.save(model, saved_model_dir)
 ```
