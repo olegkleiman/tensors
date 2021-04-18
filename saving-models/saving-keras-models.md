@@ -14,9 +14,9 @@ model = keras.Sequential([
 print(model.summary())
 ```
 
-```text
-ValueError: This model has not yet been built. Build the model first by calling `build()` or calling `fit()` with some data, or specify an `input_shape` argument in the first layer(s) for automatic build
-```
+{% hint style="danger" %}
+ValueError: This model has not yet been built. Build the model first by calling `build()` or calling `fit()` with some data, or specify an `input_shape` argument in the first layer\(s\) for automatic build
+{% endhint %}
 
 Once the input\_shape parameter of the first layer is added, you can call its `summary()`method:
 
@@ -44,8 +44,6 @@ Non-trainable params: 0
 _________________________________________________________________
 None
 ```
-
-`_italic_` $$a = e^{-x}$$ 
 
 Another way to initialize the weights is to call with some dummy but appropriately shaped input:
 
