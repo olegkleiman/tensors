@@ -139,7 +139,7 @@ saved_model_dir = './my_model/1/'
 tf.saved_model.save(model, saved_model_dir)
 ```
 
-This is TensorFlow \(not Keras\) API for saving, but Keras itself has similar functionality:
+This is TensorFlow \(not Keras\) API for saving and may be applied to regular functions \(as we did in the previous section\) but Keras itself has similar functionality:
 
 ```python
 model.save('my_model.h5')  # creates a HDF5 file 'my_model.h5'
