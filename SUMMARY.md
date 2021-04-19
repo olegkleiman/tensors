@@ -24,8 +24,9 @@
 ## Saving models
 
 * [Brief](saving-models/brief.md)
-* [Saving regular](saving-models/saving-generic.md)
+* [Saving regular functions](saving-models/saving-generic.md)
 * [Saving Keras models](saving-models/saving-keras-models.md)
+* [Converting to TF Lite](saving-models/converting-to-tf-lite.md)
 
 ---
 

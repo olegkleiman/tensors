@@ -28,7 +28,7 @@ print(model.summary())
 ValueError: This model has not yet been built. Build the model first by calling `build()` or calling `fit()` with some data, or specify an `input_shape` argument in the first layer\(s\) for automatic build
 {% endhint %}
 
-Once the input\_shape parameter of the first layer is added, you can call its `summary()`method:
+Once the `input_shape` parameter of the first layer is added, you can call its `summary()`method:
 
 ```python
 model = keras.Sequential([
@@ -54,7 +54,7 @@ _________________________________________________________________
 None
 ```
 
-Another way to initialize the weights is to call with some dummy but appropriately shaped input:
+Another way to initialize the weights is to call the model with some dummy but appropriately shaped input:
 
 ```python
 import tensorflow as tf
@@ -90,31 +90,19 @@ None
 
 ### Use Input object     
 
-When you know the input shape of the designed model, it's very useful to start its design with `Input` object:
+When you know the input shape of the designed model, it's very useful to start its design with `Input` object that is actually TensorFlow symbolic tensor used as an entry point into a Network.
 
 ```python
-model = keras.Sequential(name="My Model")
-model.add(keras.Input(shape=(1,4)))
+model = keras.Sequential(name="My_Model")
+model.add(keras.Input(shape=(1,4), name="input_layer"))
+# or model.add(keras.layers.InputLayer(input_shape=(1, 4), name="input_layer"))
 model.add(layers.Dense(8, activation=tf.nn.sigmoid, name="dense_1"))
 model.add(layers.Dense(1, name="output_layer"))
 
 print(model.summary())
 ```
 
-{% hint style="info" %}
-`Sequential` API is not the only way to define Keras models. Actually, following this example, with the help of `Input`object, the model may be defined as more general:
-
-```text
-inputs = keras.Input(shape=(1, 4))
-x = keras.layers.Dense(8, activation=tf.nn.sigmoid, input_dim=1, name="dense_1")(inputs)
-outputs = keras.layers.Dense(1, name="output_layer")(x)
-model = tf.keras.Model(inputs, outputs, name="My Model")
-```
-
-This is extremely useful for creating encoders/decoders.
-{% endhint %}
-
-Functionally this is the same model design as in previous examples, but `Input` object is not displayed in summary simply because it is not a layer.
+Functionally this is the same model design as in previous examples, but internally`Input` object is used to create \(not displayed in summary\) `InputLayer` 
 
 ```text
 Model: "My_Model"
@@ -132,6 +120,25 @@ _________________________________________________________________
 None
 ```
 
+{% hint style="info" %}
+`Sequential` API is not the only way to define Keras models. Actually, following this example, with the help of `Input`object, the model may be defined as more general:
+
+```python
+inputs = keras.Input(shape=(1, 4), name="input_layer")
+x = keras.layers.Dense(8, activation=tf.nn.sigmoid, input_dim=1, name="dense_1")(inputs)
+outputs = keras.layers.Dense(1, name="output_layer")(x)
+model = tf.keras.Model(inputs, outputs, name="My_Model")
+```
+
+This is extremely useful for creating encoders/decoders.
+{% endhint %}
+
+The most important part of `Input` object is to provide the model with the description of the input in terms of `TensorSpec` similarly as we saw in `@tf.function` decorator parameters for generic function.
+
+To sum up,  using `InputLayer` with Keras Sequential API, can be skipped moving the `input_shape` parameter to the first layer of the model
+
+### Save a model
+
 Once the model is built it may be saved as [TF SavedModel format](https://www.tensorflow.org/guide/saved_model):
 
 ```python
@@ -139,13 +146,33 @@ saved_model_dir = './my_model/1/'
 tf.saved_model.save(model, saved_model_dir)
 ```
 
-This is TensorFlow \(not Keras\) API for saving and may be applied to regular functions \(as we did in the previous section\) but Keras itself has similar functionality:
+This is TensorFlow \(not Keras\) API for saving and may be applied to regular functions \(as we did in the previous section\) but Keras itself has similar functionality:generr
 
 ```python
 model.save('my_model.h5')  # creates a HDF5 file 'my_model.h5'
 ```
 
+### Save the subclassed Keras model
 
+In many cases it's very convinient to define the custom model by inheriting \(subclassing\) from generic, not-Sequential,`keras.Model` class.
+
+```python
+class KerasModel(tf.keras.Model):
+    def __init__(self, input_shape):
+        super(KerasModel, self).__init__()
+
+        inputs = tf.keras.Input(shape=input_shape)
+
+        x = Dense(8, activation=tf.nn.sigmoid, input_dim=1)(inputs)
+        outputs = Dense(1)(x)
+        self.model = tf.keras.Model(inputs, outputs, name="My_Model")
+```
+
+The models defined in this way may be safely serialized into SavedModel format by calling both tf.saved\_model.save\(\) or keras.model.save\(\), but saving into HDF5 is not possible, because
+
+> such models are deined via the body of a Python method, which isn't safely serializable
+
+>
 
 {% page-ref page="saving-keras-models.md" %}
 
