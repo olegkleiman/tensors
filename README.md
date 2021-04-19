@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This workspace summarises the learning curve of theoretical and practical ML learning materials primary oriented for Deep Learning and Neural Networks.
+This workspace summarises the learning curve of theoretical and practical ML learning materials primary oriented for mastering Deep Learning and Neural Networks.
 
 ## What you should have before?
 
