@@ -1,8 +1,24 @@
 # README
 
-## What is this
+## What is this?
 
 This workspace summarises the learning curve of theoretical and practical ML learning materials primary oriented for Deep Learning and Neural Networks.
+
+## What you should have before?
+
+You should have a basic knowledge of the following mathematical areas:
+
+1. Linear Algebra: matrix terms \(shapes, dimensionality\) and operations \(multiplication, dot procuct\) 
+2. Probability Theory \(most important\)
+
+2.1 the properties of most known distributions: Normal \(Gauss\), Binomial, Logistic, Beta, Gamma
+
+2.2 Bayes reasoning
+
+1. Calculus: differentiation and basics of function analysis
+2. Information Theory -   
+
+
 
 ## Setup notes
 
