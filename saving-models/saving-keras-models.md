@@ -133,7 +133,7 @@ model = tf.keras.Model(inputs, outputs, name="My_Model")
 This is extremely useful for creating encoders/decoders.
 {% endhint %}
 
-The most important part of `Input` object is to provide the model with the description of the input in terms of `TensorSpec` similarly as we saw in `@tf.function` decorator parameters for generic function.
+The most important part of `Input` object is to provide the model with the description of the input in terms of `TensorSpec` similarly, as we saw in `@tf.function` decorator parameters for the generic function.
 
 To sum up,  using `InputLayer` with Keras Sequential API, can be skipped moving the `input_shape` parameter to the first layer of the model
 
@@ -146,7 +146,7 @@ saved_model_dir = './my_model/1/'
 tf.saved_model.save(model, saved_model_dir)
 ```
 
-This is TensorFlow \(not Keras\) API for saving and may be applied to regular functions \(as we did in the previous section\) but Keras itself has similar functionality:generr
+This is TensorFlow \(not Keras\) API for saving and may be applied to regular functions \(as we did in the previous section\) but Keras itself has similar functionality:
 
 ```python
 model.save('my_model.h5')  # creates a HDF5 file 'my_model.h5'
@@ -154,7 +154,7 @@ model.save('my_model.h5')  # creates a HDF5 file 'my_model.h5'
 
 ### Save the subclassed Keras model
 
-In many cases it's very convinient to define the custom model by inheriting \(subclassing\) from generic, not-Sequential,`keras.Model` class.
+In many cases, it's very convenient to define the custom model by inheriting \(subclassing\) from generic, not-Sequential,`keras.Model` class.
 
 ```python
 class KerasModel(tf.keras.Model):
@@ -168,7 +168,7 @@ class KerasModel(tf.keras.Model):
         self.model = tf.keras.Model(inputs, outputs, name="My_Model")
 ```
 
-The models defined in this way may be safely serialized into SavedModel format by calling both tf.saved\_model.save\(\) or keras.model.save\(\), but saving into HDF5 is not possible, because
+The models defined in this way may be safely serialized into SavedModel format by calling both `tf.saved_model.save()` or `keras.model.save()`, but saving into HDF5 is not possible, because
 
 > such models are deined via the body of a Python method, which isn't safely serializable
 

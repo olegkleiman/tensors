@@ -23,7 +23,7 @@ class Wrapper(tf.Module):
 
 `_call` method here is decorated with famous `@tf.function` decorator.
 
-Then saving and loading the model is permormed straight-forward:
+Then saving and loading the model is performed straight-forward:
 
 ```python
 model = Wrapper()
