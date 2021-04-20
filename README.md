@@ -8,15 +8,12 @@ This workspace summarises the learning curve of theoretical and practical ML lea
 
 You should have a basic knowledge of the following mathematical areas:
 
-1. Linear Algebra: matrix terms \(shapes, dimensionality\) and operations \(multiplication, dot product\) 
-2. Probability Theory \(most important\)
-
-2.1 the properties of most known distributions: Normal \(Gauss\), Binomial, Logistic, Beta, Gamma
-
-2.2 Bayes reasoning
-
-1. Calculus: differentiation and basics of function analysis
-2. Information Theory -   
+* Linear Algebra: matrix terms \(shapes, dimensionality\) and operations \(multiplication, dot product\) 
+* Probability Theory \(most important\):
+  1. The properties of most known distributions: Normal \(Gauss\), Binomial, Logistic, Beta, Gamma
+  2. Bayes reasoning
+* Calculus: differentiation and basics of function analysis
+* Information Theory:   
 
 
 
