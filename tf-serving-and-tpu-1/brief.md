@@ -61,7 +61,13 @@ dc5c61633bec   tensorflow/serving   "/usr/bin/tf_serving…"   20 hours ago   Up
 e3d3f15c4675   registry:2           "/entrypoint.sh /etc…"   5 months ago   Up 21 hours     0.0.0.0:5000->5000/tcp             registry
 ```
 
-As said, this Docker app may serve both gRPC and REST requests. Specifically, the following code issues HTTP POST request to 
+As said, this Docker app may serve both gRPC and REST requests. Specifically, the following code issues HTTP POST request to localhost according to the following schema:
+
+http://{HOST}:{PORT}/v1/models/{MODEL\_NAME}:{VERB}
+
+`{MODEL_NAME}` here is the same as specified in `-e MODEL_NAME=` when starting Docker app.
+
+`{VERB}` one of the predefined  _predict_, _classify_ or _regress_
 
 ```python
 SERVER_URL = 'http://localhost:8501/v1/models/resnet:predict'
@@ -75,6 +81,8 @@ prediction['classes']
 ```
 
 The full client script is [here](https://raw.githubusercontent.com/tensorflow/serving/master/tensorflow_serving/example/resnet_client.py).
+
+Note that when formatting JSON for gRPC request 
 
 
 
