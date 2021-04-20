@@ -38,7 +38,7 @@ Breaking down the command line arguments, we have
 * `-e MODEL_NAME=resnet` : telling TF Serving to load the model named "resnet".
 * `-t tensorflow/serving` : run a Docker contained based on the image "tensorflow/serving"
 
-Now this newly created container should be listed among the others:
+Now, this newly created container should be listed among the others:
 
 ```bash
 $ docker ps
