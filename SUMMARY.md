@@ -21,7 +21,7 @@
 
 * [Brief](4.-classification-task/brief.md)
 
-## Saving models
+## 5. Saving models <a id="saving-models"></a>
 
 * [Brief](saving-models/brief.md)
 * [Saving regular functions](saving-models/saving-generic.md)
@@ -31,4 +31,8 @@
 ---
 
 * [References](references.md)
+
+## 6. TF Serving and TPU <a id="tf-serving-and-tpu-1"></a>
+
+* [Brief](tf-serving-and-tpu-1/brief.md)
 
