@@ -13,5 +13,5 @@ TS Serving provided by Google as Docker image both for CPU and GPU. Currently, o
 $ docker pull tensorflow/serving
 ```
 
-TF Serving uses the `SavedModel` format for its ML models. Saving the model into this format is described in section 5. Saving Models of this 
+TF Serving uses the `SavedModel` format for its ML models. Saving the model into this format is described in section 5. Saving Models of this workspace.
 
