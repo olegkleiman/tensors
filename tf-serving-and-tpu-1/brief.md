@@ -38,6 +38,20 @@ Breaking down the command line arguments, we have
 * `-e MODEL_NAME=resnet` : telling TF Serving to load the model named "resnet".
 * `-t tensorflow/serving` : run a Docker contained based on the image "tensorflow/serving"
 
+Logs from this run display the open end-points: `0.0.0.0:8500` for gRPC and `localhost:8501` for REST HTTP:
+
+```python
+2021-04-20 16:30:23.898742: I tensorflow_serving/model_servers/server.cc:371] 
+Running gRPC ModelServer at 0.0.0.0:8500 ...
+
+[warn] getaddrinfo: address family for nodename not supported
+
+[evhttp_server.cc : 238] NET_LOG: Entering the event loop ...
+
+2021-04-20 16:30:23.902030: I tensorflow_serving/model_servers/server.cc:391] 
+Exporting HTTP/REST API at:localhost:8501 ...
+```
+
 Now, this newly created container should be listed among the others:
 
 ```bash
