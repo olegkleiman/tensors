@@ -47,3 +47,22 @@ dc5c61633bec   tensorflow/serving   "/usr/bin/tf_serving…"   20 hours ago   Up
 e3d3f15c4675   registry:2           "/entrypoint.sh /etc…"   5 months ago   Up 21 hours     0.0.0.0:5000->5000/tcp             registry
 ```
 
+As said, this Docker app may serve both gRPC and REST requests. Specifically, the following code issues HTTP POST request to 
+
+```python
+SERVER_URL = 'http://localhost:8501/v1/models/resnet:predict'
+# Compose a JSON Predict request (send JPEG image in base64).
+jpeg_bytes = base64.b64encode(dl_request.content).decode('utf-8')
+predict_request = '{"instances" : [{"b64": "%s"}]}' % jpeg_bytes
+
+response = requests.post(SERVER_URL, data=predict_request)
+prediction = response.json()['predictions'][0]
+prediction['classes']
+```
+
+The full client script is [here](https://raw.githubusercontent.com/tensorflow/serving/master/tensorflow_serving/example/resnet_client.py).
+
+
+
+
+
