@@ -82,9 +82,15 @@ prediction['classes']
 
 The full client script is [here](https://raw.githubusercontent.com/tensorflow/serving/master/tensorflow_serving/example/resnet_client.py).
 
-Note that when formatting JSON for gRPC request 
+The general form of JSON payload for gRPC request is:
 
+```javascript
+{"signature_name": "<string>",
+"instances": <value>
+}
+```
 
+where `"signature_name"` is usually set to `"serving_default"` or may be omiited.
 
 
 
