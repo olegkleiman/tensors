@@ -41,7 +41,7 @@ Breaking down the command line arguments, we have
 Now this newly created container should be listed among the others:
 
 ```bash
-olegk@iMac tf_serving % docker ps
+$ docker ps
 CONTAINER ID   IMAGE                COMMAND                  CREATED        STATUS          PORTS                              NAMES
 dc5c61633bec   tensorflow/serving   "/usr/bin/tf_serving…"   20 hours ago   Up 46 minutes   8500/tcp, 0.0.0.0:8501->8501/tcp   tfserving_resnet
 e3d3f15c4675   registry:2           "/entrypoint.sh /etc…"   5 months ago   Up 21 hours     0.0.0.0:5000->5000/tcp             registry
