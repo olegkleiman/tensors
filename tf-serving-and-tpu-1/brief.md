@@ -90,7 +90,7 @@ The general form of JSON payload for gRPC request is:
 }
 ```
 
-where `"signature_name"` is usually set to `"serving_default"` or may be omiited.
+where `"signature_name"` is usually set to `"serving_default"` or maybe omitted. This signature name is taken from the structure of SavedModel described in [Brief](https://oleg-kleyman.gitbook.io/eml/saving-models/brief) section of "Saving models" part of this workspace.
 
 
 

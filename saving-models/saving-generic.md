@@ -34,3 +34,47 @@ loaded_model = tf.saved_model.load(saved_model_dir)
 print(loaded_model.signatures)
 ```
 
+Remembering the SavedModel structure mentioned at Brief section, you may analyze the saved model with the help of `saved_model_cli` util :
+
+```python
+$ saved_model_cli show --dir ./1 --all
+2021-04-20 03:20:05.579456: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cudart64_110.dll
+
+MetaGraphDef with tag-set: 'serve' contains the following SignatureDefs:
+
+signature_def['__saved_model_init_op']:
+  The given SavedModel SignatureDef contains the following input(s):
+  The given SavedModel SignatureDef contains the following output(s):
+    outputs['__saved_model_init_op'] tensor_info:
+        dtype: DT_INVALID
+        shape: unknown_rank
+        name: NoOp
+  Method name is:
+
+signature_def['serving_default']:
+  The given SavedModel SignatureDef contains the following input(s):
+    inputs['x'] tensor_info:
+        dtype: DT_FLOAT
+        shape: ()
+        name: serving_default_x:0
+    inputs['y'] tensor_info:
+        dtype: DT_FLOAT
+        shape: ()
+        name: serving_default_y:0
+  The given SavedModel SignatureDef contains the following output(s):
+    outputs['output_0'] tensor_info:
+        dtype: DT_FLOAT
+        shape: ()
+        name: PartitionedCall:0
+  Method name is: tensorflow/serving/predict
+
+Defined Functions:
+  Function Name: '__call__'
+    Option #1
+      Callable with:
+        Argument #1
+          x: TensorSpec(shape=(), dtype=tf.float32, name='x')
+        Argument #2
+          y: TensorSpec(shape=(), dtype=tf.float32, name='y')
+```
+
