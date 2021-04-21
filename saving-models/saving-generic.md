@@ -34,10 +34,14 @@ loaded_model = tf.saved_model.load(saved_model_dir)
 print(loaded_model.signatures)
 ```
 
-Remembering the SavedModel structure mentioned at Brief section, you may analyze the saved model with the help of [`saved_model_cli`](https://github.com/tensorflow/docs/blob/master/site/en/r1/guide/saved_model.md#cli-to-inspect-and-execute-savedmodel) util :
+```text
+_SignatureMap({'serving_default': <ConcreteFunction signature_wrapper(*, x, y) at 0x1CDCF595C70>})
+```
+
+Remembering the SavedModel structure mentioned in the "Brief" section, you may analyze the saved model with the help of [`saved_model_cli`](https://github.com/tensorflow/docs/blob/master/site/en/r1/guide/saved_model.md#cli-to-inspect-and-execute-savedmodel) util :
 
 ```python
-$ saved_model_cli show --dir ./1 --all
+..\saved\pow> saved_model_cli show --dir ./1 --all
 2021-04-20 03:20:05.579456: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cudart64_110.dll
 
 MetaGraphDef with tag-set: 'serve' contains the following SignatureDefs:
@@ -77,4 +81,6 @@ Defined Functions:
         Argument #2
           y: TensorSpec(shape=(), dtype=tf.float32, name='y')
 ```
+
+This is typical predict SignatureDef allowed for calls to TF Serving Predict API.
 

@@ -24,7 +24,7 @@ SavedModel format is actually a **directory** with a pre-defined structure. In i
 
 SavedModel -&gt; MetaGraphDef \(tag-set\) -&gt; SignatureDef\[\] -&gt; inputs/outputs
 
-SavedModel signatures are discussed [here ](https://www.tensorflow.org/guide/saved_model)\(official TF doc\) in more detail.The valueable insigth into the internals of of SavedModel with sigantures was published [here](https://blog.tensorflow.org/2021/03/a-tour-of-savedmodel-signatures.html?m=1) \(TensorFlow Blog\)
+SavedModel signatures are discussed [here ](https://www.tensorflow.org/guide/saved_model)\(official TF doc\) in more detail. The valuable insight into the internals of SavedModel with signatures was published [here](https://blog.tensorflow.org/2021/03/a-tour-of-savedmodel-signatures.html?m=1) \(TensorFlow Blog\)
 
 ----
 
