@@ -4,7 +4,8 @@
 
 Saving Keras model generally does not differs from saving the generic functions except by the following points:
 
-* Keras models already have the signature that required by `SavedModel` format
+* Keras models already have the signature required by `SavedModel` format
+* It is possible to use Subclassing API to derive the Keras model from `tf.Module` that provides `TrackableBase` class instances of which may be stored in the checkpoint file.
 
 ### Setup
 
@@ -14,7 +15,7 @@ import tensorflow as tf
 
 ### Saving with Trackable
 
-In order to save the model based on non-Keras code consider wrap this code with a class that inherits from`tf.Module` since it's the most generic class that derived from`TrackableBase`The instances of this class are the objects that can be stored into checkpoint file.
+In order to save the model based on non-Keras code consider wrap this code with a class that inherits from`tf.Module`.
 
 ```python
 class Wrapper(tf.Module):
