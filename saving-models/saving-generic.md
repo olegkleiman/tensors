@@ -55,11 +55,20 @@ In the actual implementation, `SavedModel` format allowed to store this informat
 
 ```python
 loaded_model = tf.saved_model.load(saved_model_dir)
-print(loaded_model.signatures)
+signature_map = loaded_model.signatures
+print(signature_map)
 ```
 
 ```text
 _SignatureMap({'serving_default': <ConcreteFunction signature_wrapper(*, x, y) at 0x1CDCF595C70>})
+```
+
+
+
+```python
+concrete_func = signature_map['serving_default']
+result = concrete_func(x=tf.constant(3.), y=tf.constant(2.))
+print(result)
 ```
 
 Remembering the SavedModel structure mentioned in the "Brief" section, you may analyze the saved model with the help of [`saved_model_cli`](https://github.com/tensorflow/docs/blob/master/site/en/r1/guide/saved_model.md#cli-to-inspect-and-execute-savedmodel) util :
@@ -107,4 +116,17 @@ Defined Functions:
 ```
 
 This is typical predict SignatureDef allowed for calls to TF Serving Predict API.
+
+Based on this analysis, the caller code for executing the stored graph may look like:
+
+```python
+loaded_model = tf.saved_model.load(saved_model_dir)
+signature_map = loaded_model.signatures
+
+concrete_func = signature_map['serving_default']
+result = concrete_func(x=tf.constant(3.), y=tf.constant(2.))
+print(result['output_0'])
+```
+
+Pay attention that the result returned from the graph's invocation is a dictionary that read according to `outputs` section of `SignatureDef` 
 
