@@ -127,5 +127,7 @@ result = concrete_func(x=tf.constant(3.), y=tf.constant(2.))
 print(result['output_0'])
 ```
 
+Actually, the invocation of `concrete_func()` is passed to [TensorFlow C++ code](https://fossies.org/linux/tensorflow/tensorflow/python/tfe_wrapper.cc) \(\`TFE\__Py\__Execute\` wrapper\).
+
 Pay attention that the result returned from the graph's invocation is a dictionary that read according to `outputs` section of `SignatureDef` 
 
