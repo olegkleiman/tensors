@@ -35,7 +35,7 @@ converter = tf.lite.TFLiteConverter.from_keras_model(model)
 tf_lite_model = converter.convert()
 ```
 
-and store for further deployment
+and stored for further deployment
 
 ```text
 with open('./saved/keras/tflite/model.tflite', 'wb') as f:
