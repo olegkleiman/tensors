@@ -55,11 +55,11 @@ In the actual implementation, `SavedModel` format allowed to store this informat
 ```python
 loaded_model = tf.saved_model.load(saved_model_dir)
 signature_map = loaded_model.signatures
-print(signature_map)
+print(signature_map.keys())
 ```
 
 ```text
-_SignatureMap({'serving_default': <ConcreteFunction signature_wrapper(*, x, y) at 0x1CDCF595C70>})
+KeysView(_SignatureMap({'serving_default': <ConcreteFunction signature_wrapper(*, x, y) at 0x1FAAC270880>}))
 ```
 
 
@@ -114,7 +114,7 @@ Defined Functions:
           y: TensorSpec(shape=(), dtype=tf.float32, name='y')
 ```
 
-This is typical predict SignatureDef allowed for calls to TF Serving Predict API.
+This is typical predict SignatureDef allowed for calls to TF Serving Predict API. It posses no restrictions on the returned number of output Tensors.
 
 Based on this analysis, the caller code for executing the stored graph may look like:
 
