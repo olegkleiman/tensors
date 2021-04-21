@@ -32,5 +32,5 @@ torch.square(input_tensor)
 {% endtab %}
 {% endtabs %}
 
- 
+ Now using such an operation we'll have the derivative stored aside. So when we requested to calculate the derivative at a point, we'll pick up this stored value from there and this close the missed information for the whole calculation.
 
