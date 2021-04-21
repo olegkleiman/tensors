@@ -44,7 +44,6 @@ loaded_model.__call__.get_concrete_function()
 concrete_func = loaded_model.__call__.get_concrete_function()
 result = concrete_func(3, 2)
 print(result.numpy())
-print(loaded_model.signatures)
 ```
 
 Note that we used here some previously known information about the function name and its parameters: the code executed after reloading the model assumed to know the name \_\_call and at least the types of the parameters passed to this function.
