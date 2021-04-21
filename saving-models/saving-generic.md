@@ -21,17 +21,39 @@ class Wrapper(tf.Module):
         return tf.math.pow(x, y)
 ```
 
-As discussed previously, decorating the method with @tf.function decorator actually attaches the execution graph \(`tf.Graph`\) to the decorated function. This graph is exposed by `ConcreteFunction` exposed to callers.
+As discussed previously, decorating the method with @tf.function decorator actually attaches the execution graph \(`tf.Graph`\) to the decorated function. This graph is exposed by `ConcreteFunction` to callers.
 
-This `ConcreteFunction` then may be executed without Python runtime environment before **and after** the model is saved. Before the saving, it's straight-forward:
-
-
+This `ConcreteFunction` then maybe executed without Python runtime environment before **and after** the model is saved. Before the saving, it's straight-forward:
 
 ```python
 model = Wrapper()
+
+concrete_func = model.__call__.get_concrete_function()
+result = concrete_func(3, 2)
+print(result.numpy())
+```
+
+After the saving:
+
+```python
 saved_model_dir = './saved/pow/1'
 tf.saved_model.save(model, saved_model_dir)
 
+loaded_model = tf.saved_model.load(saved_model_dir)
+loaded_model.__call__.get_concrete_function()
+concrete_func = loaded_model.__call__.get_concrete_function()
+result = concrete_func(3, 2)
+print(result.numpy())
+print(loaded_model.signatures)
+```
+
+Note that we used here some previously known information about the function name and its parameters: the code executed after reloading the model assumed to know the name \_\_call and at least the types of the parameters passed to this function.
+
+In the actual implementation, `SavedModel` format allowed to store this information to omit these assumptions.  
+
+`SavedModel`introduces the concept of Signatures that provides all the caller needs
+
+```python
 loaded_model = tf.saved_model.load(saved_model_dir)
 print(loaded_model.signatures)
 ```
