@@ -27,6 +27,8 @@
 * [Saving regular functions](saving-models/saving-generic.md)
 * [Saving Keras models](saving-models/saving-keras-models.md)
 * [Converting to TF Lite](saving-models/converting-to-tf-lite.md)
+* [Importing to tensoflow.js](saving-models/importing-to-tensoflow.js.md)
+* [See also](saving-models/see-also.md)
 
 ---
 
@@ -35,4 +37,6 @@
 ## 6. TF Serving and TPU <a id="tf-serving-and-tpu-1"></a>
 
 * [Brief](tf-serving-and-tpu-1/brief.md)
+* [Tutorial](tf-serving-and-tpu-1/tutorial.md)
+* [See also](tf-serving-and-tpu-1/see-also.md)
 

@@ -15,7 +15,11 @@ You should have a basic knowledge of the following mathematical areas:
 * Calculus: differentiation and basics of function analysis
 * Information Theory:   
 
+## Covered frameworks
 
+This workspace primarily concentrated on TensorFlow 2.X. Other frameworks like PyTorch and Intel OpenVino are mentioned. 
+
+Pay attention also to less known but brilliant solution JS-based for general ML:  ![](.gitbook/assets/ml5.png) ML5 \([https://learn.ml5js.org/](https://learn.ml5js.org/)\)
 
 ## Setup notes
 

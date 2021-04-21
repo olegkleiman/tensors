@@ -34,7 +34,7 @@ loaded_model = tf.saved_model.load(saved_model_dir)
 print(loaded_model.signatures)
 ```
 
-Remembering the SavedModel structure mentioned at Brief section, you may analyze the saved model with the help of `saved_model_cli` util :
+Remembering the SavedModel structure mentioned at Brief section, you may analyze the saved model with the help of [`saved_model_cli`](https://github.com/tensorflow/docs/blob/master/site/en/r1/guide/saved_model.md#cli-to-inspect-and-execute-savedmodel) util :
 
 ```python
 $ saved_model_cli show --dir ./1 --all

@@ -1,7 +1,7 @@
 ---
 description: >-
-  TF Models may be serialized into SavedModel format. This is a protobuf used
-  for further deploying the model on various Python-independent platforms like
+  TF Models may be serialized into SavedModel format that is a protobuf used for
+  further deploying the model on various Python-independent platforms like
   tensorflow.js, TF Lite, or TF Serving
 ---
 
@@ -20,9 +20,9 @@ Basically, the way to describe the input tensor's size is to provide its shape e
 
 ### Defining model's signatures
 
-SavedModel format is actually a **directory** with a pre-defined structure. In its root, it contains`saved_model.pd` file that stores the actual TensorFlow program, or model, and a set of named signatures, each identifying a function that accepts tensor inputs and produces tensor outputs.
+SavedModel format is actually a **directory** with a pre-defined structure. In its root, it contains`saved_model.pd` file that is the SavedModel protocol buffer. It includes the graph definitions as `MetaGraphDef` protocol buffers that is actually the set of named signatures, each identifying a function that accepts tensor inputs and produces tensor outputs.
 
-SavedModel -&gt; MetaGraphDef \(tag-set\) -&gt; SignatureDef\[\] -&gt; 
+SavedModel -&gt; MetaGraphDef \(tag-set\) -&gt; SignatureDef\[\] -&gt; inputs/outputs
 
 SavedModel signatures are discussed [here ](https://www.tensorflow.org/guide/saved_model)\(official TF doc\) in more detail.
 
@@ -32,7 +32,7 @@ Models' graphs are serialized in SavedModel format that is actually a binary _pr
 
 
 
-TF models may be saved as SavedModel or HDF5 format for further deployment onto platforms that run without Python interpreter: [TF Serving](https://www.tensorflow.org/tfx/tutorials/serving/rest_simple), [tensorflow.js](https://www.tensorflow.org/js/tutorials), and [TensorFlow Lite](https://www.tensorflow.org/lite/guide).
+
 
 
 
