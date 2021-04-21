@@ -43,4 +43,6 @@
 ## References <a id="references-1"></a>
 
 * [Networks](references-1/networks.md)
+* [Algorithms](references-1/algorithms.md)
+* [Datasets](references-1/datasets.md)
 
