@@ -10,7 +10,7 @@ import tensorflow as tf
 
 ### Saving with Trackable
 
-In order to save the model based on non-Keras code consider wrap this code with a class that inherits from`tf.Module` since it's the most generic class that derived from`TrackableBase` The instances of this class are the objects that can be stored inside checkpoint file.
+In order to save the model based on non-Keras code consider wrap this code with a class that inherits from`tf.Module` since it's the most generic class that derived from`TrackableBase`The instances of this class are the objects that can be stored inside checkpoint file.
 
 ```python
 class Wrapper(tf.Module):
