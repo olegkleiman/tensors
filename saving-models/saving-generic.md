@@ -2,6 +2,10 @@
 
 ![](../.gitbook/assets/colab_favicon.ico) The accompanying code is hosted on [Codelab](https://colab.research.google.com/drive/1aId7DB_bH6KAla529_154K_A0tITqeAS?usp=sharing).  
 
+Saving Keras model generally does not differs from saving the generic functions except by the following points:
+
+* Keras models already have the signature that required by `SavedModel` format
+
 ### Setup
 
 ```python
