@@ -10,7 +10,7 @@ import tensorflow as tf
 
 ### Saving with Trackable
 
-In order to save the model based on non-Keras code consider wrap this code with a class that inherits from`tf.Module` since it's the most generic class that derived from`TrackableBase`The instances of this class are the objects that can be stored inside checkpoint file.
+In order to save the model based on non-Keras code consider wrap this code with a class that inherits from`tf.Module` since it's the most generic class that derived from`TrackableBase`The instances of this class are the objects that can be stored into checkpoint file.
 
 ```python
 class Wrapper(tf.Module):
@@ -21,9 +21,11 @@ class Wrapper(tf.Module):
         return tf.math.pow(x, y)
 ```
 
-`_call` method here is decorated with famous `@tf.function` decorator.
+As discussed previously, decorating the method with @tf.function decorator actually attaches the execution graph \(`tf.Graph`\) to the decorated function. This graph is exposed by `ConcreteFunction` exposed to callers.
 
-Then saving and loading the model is performed straight-forward:
+This `ConcreteFunction` then may be executed without Python runtime environment before **and after** the model is saved. Before the saving, it's straight-forward:
+
+
 
 ```python
 model = Wrapper()
