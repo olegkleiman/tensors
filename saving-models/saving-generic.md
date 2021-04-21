@@ -70,7 +70,7 @@ result = concrete_func(x=tf.constant(3.), y=tf.constant(2.))
 print(result)
 ```
 
-Remembering the SavedModel structure mentioned in the "Brief" section, you may analyze the saved model with the help of [`saved_model_cli`](https://github.com/tensorflow/docs/blob/master/site/en/r1/guide/saved_model.md#cli-to-inspect-and-execute-savedmodel) util :
+Remembering the `SavedModel` structure mentioned in the "Brief" section, you may analyze the saved model with the help of [`saved_model_cli`](https://github.com/tensorflow/docs/blob/master/site/en/r1/guide/saved_model.md#cli-to-inspect-and-execute-savedmodel) util :
 
 ```python
 ..\saved\pow> saved_model_cli show --dir ./1 --all
