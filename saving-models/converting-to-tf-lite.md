@@ -1,6 +1,11 @@
-# Converting to TF Lite
+---
+description: >-
+  TF Lite models are optimized versions of the models intended to run primarily
+  on mobile devices. One can convert the created model into TF Lite version by
+  using TFLiteConverter methods.
+---
 
-TF Lite models are optimized versions of the models intended to run primarily on mobile devices. One can convert the created model into TF Lite version by using `TFLiteConverter` methods.
+# Converting to TF Lite
 
 ### Setup
 
@@ -37,5 +42,11 @@ with open('./saved/keras/tflite/model.tflite', 'wb') as f:
     f.write(tf_lite_model)
 ```
 
+### TF Lite devices
 
+It's worth seeing on some special-designed devices that optimized for TF Lite runtime. One type of them is manufactured by Coral AI with Google-supplied Edge TPU. 
+
+![Coral AI Dev Board with Edge TPU \(appx. $150\)](../.gitbook/assets/edge-tpu.webp)
+
+See [**here**](https://coral.ai/products/#prototyping-products) ****for more**.**
 

@@ -35,7 +35,7 @@ Breaking down the command line arguments, we have
 * `-p 8501:8501` : publishing the container's port 8501 \(where TF Serving responds to REST API requests\) to the host's port 8501
 * _`-`-`name tfserving_resnet` : get the container the name "tfserving_\_resnet"
 * `--mount type=bind, source=/tmp/resnet, target=/models/resnet` : mounting the host local directory `/tmp/resnet` to the container's directory `/models/resnet` so TF Serving can read the model inside the container
-* `-e MODEL_NAME=resnet` : telling TF Serving to load the model named "resnet".
+* `-e MODEL_NAME=resnet` : environment variable telling TF Serving to load the model named "resnet".
 * `-t tensorflow/serving` : run a Docker contained based on the image "tensorflow/serving"
 
 Logs from this run display the open end-points: `0.0.0.0:8500` for gRPC and `localhost:8501` for REST HTTP:
@@ -92,5 +92,7 @@ The general form of JSON payload for gRPC request is:
 
 where `"signature_name"` is usually set to `"serving_default"` or maybe omitted. This signature name is taken from the structure of SavedModel described in [Brief](https://oleg-kleyman.gitbook.io/eml/saving-models/brief) section of "Saving models" part of this workspace.
 
+### TPU
 
+This is a huge topic that should be discovered in separate works. Briefly, there are non-casual similarity exists between the Docker containers running TF Serving and managed by Kubernetes and general TPU architecture. TPU is also accessed by exposed gRPC end-points. 
 
