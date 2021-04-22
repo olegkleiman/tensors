@@ -5,7 +5,7 @@
 ## 1. Basic concepts <a id="basic-concepts"></a>
 
 * [Brief](basic-concepts/brief.md)
-* [Derivative at a point](basic-concepts/derivative-at-a-point.md)
+* [Automatic Differentiation](basic-concepts/derivative-at-a-point.md)
 
 ## 2. Learning Algorithm Generalization <a id="learning-algorithm-generalization"></a>
 

@@ -1,4 +1,4 @@
-# Derivative at a point
+# Automatic Differentiation
 
 Generally speaking, if we know a value of a function at the point, it is **impossible** to find its derivative at the same point. But this becomes possible if we know some additional information about the function.
 
@@ -32,5 +32,7 @@ torch.square(input_tensor)
 {% endtab %}
 {% endtabs %}
 
- Now using such an operation we'll have the derivative stored aside. So when we requested to calculate the derivative at a point, we'll pick up this stored value from there and thus, make up the missed information for the whole calculation.
+ Using such an operation we'll have the derivative stored aside. So when we requested to calculate the derivative at a point, we'll pick up this stored value from there and thus, make up the missed information for the whole calculation.
+
+
 
