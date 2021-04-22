@@ -11,6 +11,7 @@
 
 * [Brief](learning-algorithm-generalization/brief.md)
 * [Linear Regression](learning-algorithm-generalization/linear-regression.md)
+* [Linear Regression with Keras](learning-algorithm-generalization/linear-regression-with-keras.md)
 * [Multivariate Linear Regression](learning-algorithm-generalization/multivariate-linear-regression.md)
 * [Non-linear regression](learning-algorithm-generalization/non-linear-regression.md)
 
