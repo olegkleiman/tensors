@@ -1,10 +1,14 @@
 # Importing to tensoflow.js
 
-The official Google tutorial on this topic is [here ](https://www.tensorflow.org/js/tutorials/conversion/import_keras).\([https://www.tensorflow.org/js/tutorials/conversion/import\_keras](https://www.tensorflow.org/js/tutorials/conversion/import_keras)\)
+The official Google tutorial on this topic is [here](https://www.tensorflow.org/js/tutorials/conversion/import_keras).
 
 Some notes to this tutorial:
 
-When converting SavedModel to TF.js model, the produced JSON is re-assembles the signature "serving\_default" from .pb:
+1. Converting .pb to TF.js model
+
+   `tensorflowjs_converter --input_format=tf_saved_model ./saved/pow/1/ ./saved/pow/js/`
+
+2. When converting `SavedModel` to TF.js model, the produced JSON is re-assembles the signature "serving\_default" from .pb:
 
 {% tabs %}
 {% tab title="mode.json" %}
